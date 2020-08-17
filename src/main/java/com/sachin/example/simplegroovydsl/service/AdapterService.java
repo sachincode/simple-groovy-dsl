@@ -2,6 +2,7 @@ package com.sachin.example.simplegroovydsl.service;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.sachin.example.simplegroovydsl.Constants;
 import com.sachin.example.simplegroovydsl.core.AdapterContext;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @Service
 public class AdapterService  implements InitializingBean {
 
+    private static final Splitter LINE_SPLITTER = Splitter.onPattern("\r?\n").omitEmptyStrings().trimResults();
 
     private final Map<String, AdapterExecutor> executors = new ConcurrentHashMap<>();
 
@@ -83,14 +85,14 @@ public class AdapterService  implements InitializingBean {
      * @return
      */
     private List<String> getDefaultImportList() {
-        return Lists.newArrayList("org.slf4j.MDC");
+        return Lists.newArrayList("import org.slf4j.MDC");
     }
 
     private List<String> getMergedImportList(DSLConfig dslConfig) {
         List<String> list = new ArrayList<>();
         list.addAll(getDefaultImportList());
-        if (!CollectionUtils.isEmpty(dslConfig.getImportList())) {
-            list.addAll(dslConfig.getImportList());
+        if (!StringUtils.isNotBlank(dslConfig.getImportList())) {
+            list.addAll(LINE_SPLITTER.splitToList(dslConfig.getImportList()));
             list = list.stream().distinct().collect(Collectors.toList());
         }
         return list;

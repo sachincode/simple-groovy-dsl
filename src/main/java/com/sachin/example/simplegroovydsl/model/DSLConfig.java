@@ -21,7 +21,7 @@ public class DSLConfig {
     @ApiModelProperty("Adapter定时任务是否启用")
     private Boolean scheduleEnabled;
     @ApiModelProperty("需要导入的类")
-    private List<String> importList;
+    private String importList;
     @ApiModelProperty("Adapter DSL")
     private String content;
     @ApiModelProperty("操作人")

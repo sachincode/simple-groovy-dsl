@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="MBG" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false"/>
+            <!-- 是否生成注释代时间戳 -->
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库配置
+            useInformationSchema=true 加上后生成的entity时可以从库里读取到字符注释
+        -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost:3306/test?characterEncoding=utf8&amp;allowMultiQueries=true&amp;useInformationSchema=true"
+            userId="root" password="newpass">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- model配置
+            targetPackage是指你放置实体的包名
+            targetProject是指生成文件存放的项目代码目录
+            trimStrings是指入库前是否去掉字符串前的空格，强烈建议false
+            supportLombok 是指生成的entity是否是lombok的
+            fieldCommentLineChars 是指单行注释最多字符数，建议66以符合findbugs
+            ignoreColumns是指通用生成代码时忽略的字段,多个逗号分隔
+            runtimeException是指生成的Example中丢出的异常，如果未配置则丢出RuntimeException, sonar会有警告
+        -->
+        <javaModelGenerator targetPackage="com.sachin.example.simplegroovydsl.model"
+            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="false"/>
+            <property name="supportLombok" value="true"/>
+            <property name="fieldCommentLineChars" value="66"/>
+        </javaModelGenerator>
+
+        <!-- xml配置文件 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--接口 -->
+        <!-- type: XMLMAPPER / ANNOTATEDMAPPER -->
+        <javaClientGenerator type="ANNOTATEDMAPPER"
+            targetPackage="com.sachin.example.simplegroovydsl.dao"
+            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- 示例 -->
+
+        <!--<table tableName="T_Collection_Voice_Analysis" domainObjectName="VoiceAnalysisEntity">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+            <!--<columnOverride column="id" javaType="Long"/>-->
+            <!--<columnOverride column="create_at" javaType="java.sql.Timestamp"/>-->
+            <!--<ignoreColumn column="gmt51_create"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="student" domainObjectName="Student"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+
+        <!--<table tableName="T_dsl_config" domainObjectName="DslConfigEntity">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+            <!--<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="import_list" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="status" javaType="java.lang.Integer"/>-->
+            <!--<columnOverride column="schedule_status" javaType="java.lang.Integer"/>-->
+        <!--</table>-->
+
+        <table tableName="T_dsl_config_history" domainObjectName="DslConfigHistoryEntity">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="config" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
