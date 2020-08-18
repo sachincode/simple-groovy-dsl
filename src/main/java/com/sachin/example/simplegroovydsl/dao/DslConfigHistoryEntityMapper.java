@@ -56,7 +56,7 @@ public interface DslConfigHistoryEntityMapper {
      */
     @Insert({
         "insert into T_dsl_config_history (gmt_create, gmt_modify, ",
-        "name, config, operator, ",
+        "`name`, config, `operator`, ",
         "version)",
         "values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
         "#{name,jdbcType=VARCHAR}, #{config,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, ",
@@ -101,7 +101,7 @@ public interface DslConfigHistoryEntityMapper {
      */
     @Select({
         "select",
-        "id, gmt_create, gmt_modify, name, config, operator, version",
+        "id, gmt_create, gmt_modify, `name`, config, `operator`, version",
         "from T_dsl_config_history",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -153,9 +153,9 @@ public interface DslConfigHistoryEntityMapper {
         "update T_dsl_config_history",
         "set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
-          "name = #{name,jdbcType=VARCHAR},",
+          "`name` = #{name,jdbcType=VARCHAR},",
           "config = #{config,jdbcType=VARCHAR},",
-          "operator = #{operator,jdbcType=VARCHAR},",
+          "`operator` = #{operator,jdbcType=VARCHAR},",
           "version = #{version,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=BIGINT}"
     })

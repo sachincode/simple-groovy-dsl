@@ -376,142 +376,142 @@ public class DslConfigEntityExample {
         }
 
         public Criteria andNameIsNull() {
-            addCriterion("name is null");
+            addCriterion("`name` is null");
             return (Criteria) this;
         }
 
         public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+            addCriterion("`name` is not null");
             return (Criteria) this;
         }
 
         public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+            addCriterion("`name` =", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+            addCriterion("`name` <>", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
+            addCriterion("`name` >", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
+            addCriterion("`name` >=", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
+            addCriterion("`name` <", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
+            addCriterion("`name` <=", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
+            addCriterion("`name` like", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
+            addCriterion("`name` not like", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
+            addCriterion("`name` in", values, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
+            addCriterion("`name` not in", values, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
+            addCriterion("`name` between", value1, value2, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
+            addCriterion("`name` not between", value1, value2, "name");
             return (Criteria) this;
         }
 
         public Criteria andDescribeIsNull() {
-            addCriterion("describe is null");
+            addCriterion("`describe` is null");
             return (Criteria) this;
         }
 
         public Criteria andDescribeIsNotNull() {
-            addCriterion("describe is not null");
+            addCriterion("`describe` is not null");
             return (Criteria) this;
         }
 
         public Criteria andDescribeEqualTo(String value) {
-            addCriterion("describe =", value, "describe");
+            addCriterion("`describe` =", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeNotEqualTo(String value) {
-            addCriterion("describe <>", value, "describe");
+            addCriterion("`describe` <>", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeGreaterThan(String value) {
-            addCriterion("describe >", value, "describe");
+            addCriterion("`describe` >", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeGreaterThanOrEqualTo(String value) {
-            addCriterion("describe >=", value, "describe");
+            addCriterion("`describe` >=", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeLessThan(String value) {
-            addCriterion("describe <", value, "describe");
+            addCriterion("`describe` <", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeLessThanOrEqualTo(String value) {
-            addCriterion("describe <=", value, "describe");
+            addCriterion("`describe` <=", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeLike(String value) {
-            addCriterion("describe like", value, "describe");
+            addCriterion("`describe` like", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeNotLike(String value) {
-            addCriterion("describe not like", value, "describe");
+            addCriterion("`describe` not like", value, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeIn(List<String> values) {
-            addCriterion("describe in", values, "describe");
+            addCriterion("`describe` in", values, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeNotIn(List<String> values) {
-            addCriterion("describe not in", values, "describe");
+            addCriterion("`describe` not in", values, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeBetween(String value1, String value2) {
-            addCriterion("describe between", value1, value2, "describe");
+            addCriterion("`describe` between", value1, value2, "describe");
             return (Criteria) this;
         }
 
         public Criteria andDescribeNotBetween(String value1, String value2) {
-            addCriterion("describe not between", value1, value2, "describe");
+            addCriterion("`describe` not between", value1, value2, "describe");
             return (Criteria) this;
         }
 
@@ -656,62 +656,62 @@ public class DslConfigEntityExample {
         }
 
         public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+            addCriterion("`status` is null");
             return (Criteria) this;
         }
 
         public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+            addCriterion("`status` is not null");
             return (Criteria) this;
         }
 
         public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
+            addCriterion("`status` =", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
+            addCriterion("`status` <>", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
+            addCriterion("`status` >", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
+            addCriterion("`status` >=", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
+            addCriterion("`status` <", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
+            addCriterion("`status` <=", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
+            addCriterion("`status` in", values, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
+            addCriterion("`status` not in", values, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
+            addCriterion("`status` between", value1, value2, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+            addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
 
@@ -776,72 +776,72 @@ public class DslConfigEntityExample {
         }
 
         public Criteria andOperatorIsNull() {
-            addCriterion("operator is null");
+            addCriterion("`operator` is null");
             return (Criteria) this;
         }
 
         public Criteria andOperatorIsNotNull() {
-            addCriterion("operator is not null");
+            addCriterion("`operator` is not null");
             return (Criteria) this;
         }
 
         public Criteria andOperatorEqualTo(String value) {
-            addCriterion("operator =", value, "operator");
+            addCriterion("`operator` =", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorNotEqualTo(String value) {
-            addCriterion("operator <>", value, "operator");
+            addCriterion("`operator` <>", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorGreaterThan(String value) {
-            addCriterion("operator >", value, "operator");
+            addCriterion("`operator` >", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorGreaterThanOrEqualTo(String value) {
-            addCriterion("operator >=", value, "operator");
+            addCriterion("`operator` >=", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorLessThan(String value) {
-            addCriterion("operator <", value, "operator");
+            addCriterion("`operator` <", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorLessThanOrEqualTo(String value) {
-            addCriterion("operator <=", value, "operator");
+            addCriterion("`operator` <=", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorLike(String value) {
-            addCriterion("operator like", value, "operator");
+            addCriterion("`operator` like", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorNotLike(String value) {
-            addCriterion("operator not like", value, "operator");
+            addCriterion("`operator` not like", value, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorIn(List<String> values) {
-            addCriterion("operator in", values, "operator");
+            addCriterion("`operator` in", values, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorNotIn(List<String> values) {
-            addCriterion("operator not in", values, "operator");
+            addCriterion("`operator` not in", values, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorBetween(String value1, String value2) {
-            addCriterion("operator between", value1, value2, "operator");
+            addCriterion("`operator` between", value1, value2, "operator");
             return (Criteria) this;
         }
 
         public Criteria andOperatorNotBetween(String value1, String value2) {
-            addCriterion("operator not between", value1, value2, "operator");
+            addCriterion("`operator` not between", value1, value2, "operator");
             return (Criteria) this;
         }
 

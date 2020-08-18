@@ -56,10 +56,10 @@ public interface DslConfigEntityMapper {
      */
     @Insert({
         "insert into T_dsl_config (gmt_create, gmt_modify, ",
-        "name, describe, ",
+        "`name`, `describe`, ",
         "content, import_list, ",
-        "status, schedule_status, ",
-        "operator, version)",
+        "`status`, schedule_status, ",
+        "`operator`, version)",
         "values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
         "#{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, ",
         "#{content,jdbcType=VARCHAR}, #{importList,jdbcType=VARCHAR}, ",
@@ -109,8 +109,8 @@ public interface DslConfigEntityMapper {
      */
     @Select({
         "select",
-        "id, gmt_create, gmt_modify, name, describe, content, import_list, status, schedule_status, ",
-        "operator, version",
+        "id, gmt_create, gmt_modify, `name`, `describe`, content, import_list, `status`, ",
+        "schedule_status, `operator`, version",
         "from T_dsl_config",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -166,13 +166,13 @@ public interface DslConfigEntityMapper {
         "update T_dsl_config",
         "set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
-          "name = #{name,jdbcType=VARCHAR},",
-          "describe = #{describe,jdbcType=VARCHAR},",
+          "`name` = #{name,jdbcType=VARCHAR},",
+          "`describe` = #{describe,jdbcType=VARCHAR},",
           "content = #{content,jdbcType=VARCHAR},",
           "import_list = #{importList,jdbcType=VARCHAR},",
-          "status = #{status,jdbcType=TINYINT},",
+          "`status` = #{status,jdbcType=TINYINT},",
           "schedule_status = #{scheduleStatus,jdbcType=TINYINT},",
-          "operator = #{operator,jdbcType=VARCHAR},",
+          "`operator` = #{operator,jdbcType=VARCHAR},",
           "version = #{version,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=BIGINT}"
     })

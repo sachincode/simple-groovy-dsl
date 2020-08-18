@@ -11,7 +11,7 @@ import java.util.List;
 public class DSLConfig {
 
     @ApiModelProperty("数据库唯一ID")
-    private Integer id;
+    private Long id;
     @ApiModelProperty("Adapter名称")
     private String name;
     @ApiModelProperty("Adapter描述")

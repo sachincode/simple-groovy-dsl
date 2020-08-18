@@ -55,7 +55,7 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         
         if (record.getName() != null) {
-            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
+            sql.VALUES("`name`", "#{name,jdbcType=VARCHAR}");
         }
         
         if (record.getConfig() != null) {
@@ -63,7 +63,7 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         
         if (record.getOperator() != null) {
-            sql.VALUES("operator", "#{operator,jdbcType=VARCHAR}");
+            sql.VALUES("`operator`", "#{operator,jdbcType=VARCHAR}");
         }
         
         if (record.getVersion() != null) {
@@ -88,9 +88,9 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
-        sql.SELECT("name");
+        sql.SELECT("`name`");
         sql.SELECT("config");
-        sql.SELECT("operator");
+        sql.SELECT("`operator`");
         sql.SELECT("version");
         sql.FROM("T_dsl_config_history");
         applyWhere(sql, example, false);
@@ -128,7 +128,7 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         
         if (record.getName() != null) {
-            sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+            sql.SET("`name` = #{record.name,jdbcType=VARCHAR}");
         }
         
         if (record.getConfig() != null) {
@@ -136,7 +136,7 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         
         if (record.getOperator() != null) {
-            sql.SET("operator = #{record.operator,jdbcType=VARCHAR}");
+            sql.SET("`operator` = #{record.operator,jdbcType=VARCHAR}");
         }
         
         if (record.getVersion() != null) {
@@ -160,9 +160,9 @@ public class DslConfigHistoryEntitySqlProvider {
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
-        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+        sql.SET("`name` = #{record.name,jdbcType=VARCHAR}");
         sql.SET("config = #{record.config,jdbcType=VARCHAR}");
-        sql.SET("operator = #{record.operator,jdbcType=VARCHAR}");
+        sql.SET("`operator` = #{record.operator,jdbcType=VARCHAR}");
         sql.SET("version = #{record.version,jdbcType=INTEGER}");
         
         DslConfigHistoryEntityExample example = (DslConfigHistoryEntityExample) parameter.get("example");
@@ -189,7 +189,7 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         
         if (record.getName() != null) {
-            sql.SET("name = #{name,jdbcType=VARCHAR}");
+            sql.SET("`name` = #{name,jdbcType=VARCHAR}");
         }
         
         if (record.getConfig() != null) {
@@ -197,7 +197,7 @@ public class DslConfigHistoryEntitySqlProvider {
         }
         
         if (record.getOperator() != null) {
-            sql.SET("operator = #{operator,jdbcType=VARCHAR}");
+            sql.SET("`operator` = #{operator,jdbcType=VARCHAR}");
         }
         
         if (record.getVersion() != null) {

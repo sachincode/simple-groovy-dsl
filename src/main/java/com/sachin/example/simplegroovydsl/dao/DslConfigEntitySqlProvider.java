@@ -55,11 +55,11 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getName() != null) {
-            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
+            sql.VALUES("`name`", "#{name,jdbcType=VARCHAR}");
         }
         
         if (record.getDescribe() != null) {
-            sql.VALUES("describe", "#{describe,jdbcType=VARCHAR}");
+            sql.VALUES("`describe`", "#{describe,jdbcType=VARCHAR}");
         }
         
         if (record.getContent() != null) {
@@ -71,7 +71,7 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getStatus() != null) {
-            sql.VALUES("status", "#{status,jdbcType=TINYINT}");
+            sql.VALUES("`status`", "#{status,jdbcType=TINYINT}");
         }
         
         if (record.getScheduleStatus() != null) {
@@ -79,7 +79,7 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getOperator() != null) {
-            sql.VALUES("operator", "#{operator,jdbcType=VARCHAR}");
+            sql.VALUES("`operator`", "#{operator,jdbcType=VARCHAR}");
         }
         
         if (record.getVersion() != null) {
@@ -104,13 +104,13 @@ public class DslConfigEntitySqlProvider {
         }
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
-        sql.SELECT("name");
-        sql.SELECT("describe");
+        sql.SELECT("`name`");
+        sql.SELECT("`describe`");
         sql.SELECT("content");
         sql.SELECT("import_list");
-        sql.SELECT("status");
+        sql.SELECT("`status`");
         sql.SELECT("schedule_status");
-        sql.SELECT("operator");
+        sql.SELECT("`operator`");
         sql.SELECT("version");
         sql.FROM("T_dsl_config");
         applyWhere(sql, example, false);
@@ -148,11 +148,11 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getName() != null) {
-            sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+            sql.SET("`name` = #{record.name,jdbcType=VARCHAR}");
         }
         
         if (record.getDescribe() != null) {
-            sql.SET("describe = #{record.describe,jdbcType=VARCHAR}");
+            sql.SET("`describe` = #{record.describe,jdbcType=VARCHAR}");
         }
         
         if (record.getContent() != null) {
@@ -164,7 +164,7 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getStatus() != null) {
-            sql.SET("status = #{record.status,jdbcType=TINYINT}");
+            sql.SET("`status` = #{record.status,jdbcType=TINYINT}");
         }
         
         if (record.getScheduleStatus() != null) {
@@ -172,7 +172,7 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getOperator() != null) {
-            sql.SET("operator = #{record.operator,jdbcType=VARCHAR}");
+            sql.SET("`operator` = #{record.operator,jdbcType=VARCHAR}");
         }
         
         if (record.getVersion() != null) {
@@ -196,13 +196,13 @@ public class DslConfigEntitySqlProvider {
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
-        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        sql.SET("describe = #{record.describe,jdbcType=VARCHAR}");
+        sql.SET("`name` = #{record.name,jdbcType=VARCHAR}");
+        sql.SET("`describe` = #{record.describe,jdbcType=VARCHAR}");
         sql.SET("content = #{record.content,jdbcType=VARCHAR}");
         sql.SET("import_list = #{record.importList,jdbcType=VARCHAR}");
-        sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        sql.SET("`status` = #{record.status,jdbcType=TINYINT}");
         sql.SET("schedule_status = #{record.scheduleStatus,jdbcType=TINYINT}");
-        sql.SET("operator = #{record.operator,jdbcType=VARCHAR}");
+        sql.SET("`operator` = #{record.operator,jdbcType=VARCHAR}");
         sql.SET("version = #{record.version,jdbcType=INTEGER}");
         
         DslConfigEntityExample example = (DslConfigEntityExample) parameter.get("example");
@@ -229,11 +229,11 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getName() != null) {
-            sql.SET("name = #{name,jdbcType=VARCHAR}");
+            sql.SET("`name` = #{name,jdbcType=VARCHAR}");
         }
         
         if (record.getDescribe() != null) {
-            sql.SET("describe = #{describe,jdbcType=VARCHAR}");
+            sql.SET("`describe` = #{describe,jdbcType=VARCHAR}");
         }
         
         if (record.getContent() != null) {
@@ -245,7 +245,7 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getStatus() != null) {
-            sql.SET("status = #{status,jdbcType=TINYINT}");
+            sql.SET("`status` = #{status,jdbcType=TINYINT}");
         }
         
         if (record.getScheduleStatus() != null) {
@@ -253,7 +253,7 @@ public class DslConfigEntitySqlProvider {
         }
         
         if (record.getOperator() != null) {
-            sql.SET("operator = #{operator,jdbcType=VARCHAR}");
+            sql.SET("`operator` = #{operator,jdbcType=VARCHAR}");
         }
         
         if (record.getVersion() != null) {

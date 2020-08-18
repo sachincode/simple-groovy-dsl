@@ -91,7 +91,7 @@ public class AdapterService  implements InitializingBean {
     private List<String> getMergedImportList(DSLConfig dslConfig) {
         List<String> list = new ArrayList<>();
         list.addAll(getDefaultImportList());
-        if (!StringUtils.isNotBlank(dslConfig.getImportList())) {
+        if (StringUtils.isNotBlank(dslConfig.getImportList())) {
             list.addAll(LINE_SPLITTER.splitToList(dslConfig.getImportList()));
             list = list.stream().distinct().collect(Collectors.toList());
         }

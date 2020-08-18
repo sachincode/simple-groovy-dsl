@@ -47,12 +47,4 @@ public class DslAdapterController {
         }
     }
 
-
-    @ApiOperation(value = "测试发布适配器")
-    @RequestMapping(value = "/publish", method = {RequestMethod.POST})
-    public Object publish(@RequestBody DSLConfig dslConfig) {
-        adapterService.resolveDsl(dslConfig);
-        return true;
-    }
-
 }
