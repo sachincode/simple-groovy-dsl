@@ -4,6 +4,7 @@ package com.sachin.example.simplegroovydsl.model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -28,6 +29,11 @@ public class DSLConfig {
     private String operator;
     @ApiModelProperty("版本号")
     private Integer version;
+
+    @ApiModelProperty("创建时间")
+    private String gmtCreate;
+    @ApiModelProperty("更新时间")
+    private String gmtModify;
 
 
 }

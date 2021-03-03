@@ -8,15 +8,22 @@ import com.sachin.example.simplegroovydsl.Constants;
 import com.sachin.example.simplegroovydsl.core.AdapterContext;
 import com.sachin.example.simplegroovydsl.core.AdapterDefinition;
 import com.sachin.example.simplegroovydsl.core.AdapterExecutor;
+import com.sachin.example.simplegroovydsl.dao.DslConfigEntityMapper;
+import com.sachin.example.simplegroovydsl.enums.DslStatusEnum;
 import com.sachin.example.simplegroovydsl.exception.AdapterNotFoundException;
 import com.sachin.example.simplegroovydsl.exception.AdapterParsedException;
 import com.sachin.example.simplegroovydsl.model.DSLConfig;
+import com.sachin.example.simplegroovydsl.model.DslConfigEntity;
+import com.sachin.example.simplegroovydsl.model.DslConfigEntityExample;
 import groovy.lang.Closure;
 import groovy.lang.GroovyShell;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.MDC;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -30,6 +37,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class AdapterService  implements InitializingBean {
+
+
+    @Autowired
+    private DslConfigEntityMapper dslConfigEntityMapper;
 
     private static final Splitter LINE_SPLITTER = Splitter.onPattern("\r?\n").omitEmptyStrings().trimResults();
 
@@ -105,6 +116,28 @@ public class AdapterService  implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        // 初始化加载所有的DSL，当前从数据库加载，也可进行修改从配置中心获取并监听变化进行更新加载
+        DslConfigEntityExample example = new DslConfigEntityExample();
+        example.createCriteria().andStatusEqualTo(DslStatusEnum.ENABLED.getCode());
+        List<DslConfigEntity> entityList = dslConfigEntityMapper.selectByExample(example);
+        for (DslConfigEntity entity : entityList) {
+            resolveDsl(buildDSLConfig(entity));
+        }
+        // 设置 AdapterContext 静态属性(组件)，可自行添加其他组件用于实现某些特定功能，比如redis操作类
         AdapterContext.setExecutors(Collections.unmodifiableMap(executors));
+    }
+
+
+    private DSLConfig buildDSLConfig(DslConfigEntity entity) {
+        DSLConfig config = new DSLConfig();
+        BeanUtils.copyProperties(entity, config);
+        config.setEnabled(entity.getStatus() == DslStatusEnum.ENABLED.getCode());
+        config.setScheduleEnabled(entity.getScheduleStatus() == DslStatusEnum.ENABLED.getCode());
+        return config;
+    }
+
+
+    public List<String> getAdapterExecutorNames() {
+        return Lists.newArrayList(executors.keySet());
     }
 }

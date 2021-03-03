@@ -177,4 +177,10 @@ public interface DslConfigEntityMapper {
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(DslConfigEntity record);
+
+
+    @Select({
+            "select `name` from T_dsl_config where status !=2",
+    })
+    List<String> selectNames();
 }

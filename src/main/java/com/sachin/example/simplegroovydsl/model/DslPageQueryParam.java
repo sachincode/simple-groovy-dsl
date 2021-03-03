@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
 public class DslPageQueryParam extends Pageable {
 
     private String name;
-    private String keyWord;
+    private String keyword;
     private Integer status;
 }

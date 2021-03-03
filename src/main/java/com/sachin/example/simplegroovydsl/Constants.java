@@ -16,4 +16,7 @@ public class Constants {
     public static final String TRACKING_ID_HEADER = "X-Tracking-ID";
 
 
+    public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+
 }
