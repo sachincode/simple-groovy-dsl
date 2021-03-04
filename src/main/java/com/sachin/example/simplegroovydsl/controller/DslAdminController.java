@@ -77,4 +77,11 @@ public class DslAdminController {
     public PageResponse<DslConfigHistoryEntity> queryHistory(@RequestBody DslPageQueryParam param) {
         return dslAdminService.queryHistory(param);
     }
+
+    @ApiOperation(value = "回滚指定的DSL")
+    @RequestMapping(value = "/rollback/{historyId}", method = {RequestMethod.POST})
+    public ApiResponse<Boolean> rollBackById(@PathVariable(name = "historyId") Long id) {
+        return dslAdminService.rollback(id);
+    }
+
 }

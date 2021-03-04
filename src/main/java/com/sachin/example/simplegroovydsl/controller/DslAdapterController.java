@@ -1,12 +1,15 @@
 package com.sachin.example.simplegroovydsl.controller;
 
 
+import com.sachin.example.simplegroovydsl.model.ApiResponse;
 import com.sachin.example.simplegroovydsl.model.DSLConfig;
+import com.sachin.example.simplegroovydsl.model.DslTestParam;
 import com.sachin.example.simplegroovydsl.service.AdapterService;
 import com.sachin.example.simplegroovydsl.service.api.Counter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +47,25 @@ public class DslAdapterController {
         } finally {
             log.info("响应时间[{}] times:{}", name, System.currentTimeMillis() - startTime);
             counter.inc(name, "all");
+        }
+    }
+
+
+
+    @ApiOperation(value = "测试执行适配器")
+    @RequestMapping(value = "/test", method = {RequestMethod.POST, RequestMethod.GET})
+    public ApiResponse<Object> doAdapter(@RequestBody DslTestParam param) {
+        long startTime = System.currentTimeMillis();
+        try {
+            return ApiResponse.successOf(adapterService.doTest(param));
+        } catch (Exception e) {
+            if (param.isExEnabled()) {
+                return ApiResponse.failOf(ExceptionUtils.getStackTrace(e));
+            } else {
+                throw e;
+            }
+        } finally {
+            log.info("响应时间[{}] times:{}", param.getDslConfig().getName(), System.currentTimeMillis() - startTime);
         }
     }
 

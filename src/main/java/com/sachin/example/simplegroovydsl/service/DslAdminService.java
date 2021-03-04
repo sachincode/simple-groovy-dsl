@@ -39,8 +39,15 @@ public class DslAdminService {
         boolean isNew = operateEnum == DslOperateEnum.NEW_DSL;
         checkParams(dslConfig, isNew);
         DslConfigEntity entity;
-        if (operateEnum == DslOperateEnum.UPDATE_DSL || isNew) {
+        if (operateEnum == DslOperateEnum.UPDATE_DSL || isNew || operateEnum == DslOperateEnum.ROLLBACK_DSL) {
             entity = buildDslConfigEntity(dslConfig, isNew);
+            if (!isNew) {
+                DslConfigEntity configEntity = dslConfigEntityMapper.selectByPrimaryKey(dslConfig.getId());
+                Preconditions.checkArgument(dslConfig.getName().equals(configEntity.getName()), "DSL名称不能修改！");
+                entity.setGmtCreate(configEntity.getGmtCreate());
+                dslConfig.setVersion(configEntity.getVersion());
+                entity.setVersion(configEntity.getVersion() + 1);
+            }
         } else {
             entity = dslConfigEntityMapper.selectByPrimaryKey(dslConfig.getId());
             if (entity == null) {
@@ -55,7 +62,6 @@ public class DslAdminService {
             entity.setVersion(entity.getVersion() + 1);
             entity.setOperator(LoginHelper.getLoginUsername());
             entity.setGmtModify(null);
-            entity.setGmtModify(null);
         }
         int r;
         if (isNew) {
@@ -68,25 +74,27 @@ public class DslAdminService {
             criteria.andVersionEqualTo(dslConfig.getVersion());
             r = dslConfigEntityMapper.updateByExampleSelective(entity, example);
             entity.setId(dslConfig.getId());
+            entity.setName(dslConfig.getName());
         }
 
         if (r == 0) {
             throw new RuntimeException(operateEnum.getDesc() + "Dsl配置失败, 操作记录数为0.");
         }
 
-        insertHistory(entity);
+        insertHistory(entity, operateEnum);
         adapterService.resolveDsl(dslConfig);
         // 对于分布式环境下的发布，可以把配置同步到具备监听发布能力的服务上，集群下的机器监听配置的变化执行dsl初始化
         return entity.getId();
     }
 
 
-    private void insertHistory(DslConfigEntity entity) {
+    private void insertHistory(DslConfigEntity entity, DslOperateEnum operateEnum) {
         DslConfigHistoryEntity historyEntity = new DslConfigHistoryEntity();
         historyEntity.setConfig(JSON.toJSONString(entity));
         historyEntity.setName(entity.getName());
         historyEntity.setVersion(entity.getVersion());
         historyEntity.setOperator(entity.getOperator());
+        historyEntity.setOpType(operateEnum.getCode());
         dslConfigHistoryEntityMapper.insertSelective(historyEntity);
     }
 
@@ -182,7 +190,7 @@ public class DslAdminService {
         if (update == 0) {
             throw new RuntimeException("Dsl配置删除失败");
         }
-        insertHistory(entity);
+        insertHistory(entity, DslOperateEnum.DELETE_DSL);
 
         DSLConfig dslConfig = new DSLConfig();
         dslConfig.setName(entity.getName());
@@ -210,11 +218,28 @@ public class DslAdminService {
             criteria.andNameEqualTo(param.getName());
         }
         long count = dslConfigHistoryEntityMapper.countByExample(example);
-        List<DslConfigHistoryEntity> entityList = null;
+        List<DslConfigHistoryEntity> entityList = Lists.newArrayList();
         if (count > 0) {
             example.setOrderByClause(" gmt_modify desc " + param.getLimitSql());
             entityList = dslConfigHistoryEntityMapper.selectByExample(example);
         }
-        return new PageResponse<>(param, (int) count, entityList == null ? Lists.newArrayList() : entityList);
+        for (DslConfigHistoryEntity entity : entityList) {
+            DslOperateEnum anEnum = DslOperateEnum.codeOf(entity.getOpType());
+            if (anEnum != null) {
+                entity.setOpType(anEnum.getDesc());
+            }
+        }
+        return new PageResponse<>(param, (int) count, entityList);
+    }
+
+
+    public ApiResponse<Boolean> rollback(Long historyId) {
+        DslConfigHistoryEntity historyEntity = dslConfigHistoryEntityMapper.selectByPrimaryKey(historyId);
+        Preconditions.checkNotNull(historyEntity, "历史记录不存在");
+        DSLConfig config = JSON.parseObject(historyEntity.getConfig(), DSLConfig.class);
+        config.setEnabled(true);
+        config.setScheduleEnabled(false);
+        publish(config, DslOperateEnum.ROLLBACK_DSL);
+        return ApiResponse.successOf(null);
     }
 }

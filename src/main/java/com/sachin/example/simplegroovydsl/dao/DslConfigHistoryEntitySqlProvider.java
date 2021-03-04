@@ -70,6 +70,10 @@ public class DslConfigHistoryEntitySqlProvider {
             sql.VALUES("version", "#{version,jdbcType=INTEGER}");
         }
         
+        if (record.getOpType() != null) {
+            sql.VALUES("op_type", "#{opType,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -92,6 +96,7 @@ public class DslConfigHistoryEntitySqlProvider {
         sql.SELECT("config");
         sql.SELECT("`operator`");
         sql.SELECT("version");
+        sql.SELECT("op_type");
         sql.FROM("T_dsl_config_history");
         applyWhere(sql, example, false);
         
@@ -143,6 +148,10 @@ public class DslConfigHistoryEntitySqlProvider {
             sql.SET("version = #{record.version,jdbcType=INTEGER}");
         }
         
+        if (record.getOpType() != null) {
+            sql.SET("op_type = #{record.opType,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -164,6 +173,7 @@ public class DslConfigHistoryEntitySqlProvider {
         sql.SET("config = #{record.config,jdbcType=VARCHAR}");
         sql.SET("`operator` = #{record.operator,jdbcType=VARCHAR}");
         sql.SET("version = #{record.version,jdbcType=INTEGER}");
+        sql.SET("op_type = #{record.opType,jdbcType=VARCHAR}");
         
         DslConfigHistoryEntityExample example = (DslConfigHistoryEntityExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -202,6 +212,10 @@ public class DslConfigHistoryEntitySqlProvider {
         
         if (record.getVersion() != null) {
             sql.SET("version = #{version,jdbcType=INTEGER}");
+        }
+        
+        if (record.getOpType() != null) {
+            sql.SET("op_type = #{opType,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=BIGINT}");

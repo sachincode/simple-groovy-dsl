@@ -9,6 +9,7 @@ import lombok.Data;
 public class ApiResponse<T> {
 
     public static final int SUCCESS_CODE = 0;
+    public static final int ERROR_CODE = 100;
 
     private Integer code;
     private String message;
@@ -27,5 +28,9 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> successOf(T data) {
         return new ApiResponse<>(SUCCESS_CODE, "", data);
+    }
+
+    public static <T> ApiResponse<T> failOf(String message) {
+        return new ApiResponse<>(ERROR_CODE, message, null);
     }
 }

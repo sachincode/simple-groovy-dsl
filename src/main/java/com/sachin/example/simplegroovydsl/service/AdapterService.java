@@ -15,6 +15,7 @@ import com.sachin.example.simplegroovydsl.exception.AdapterParsedException;
 import com.sachin.example.simplegroovydsl.model.DSLConfig;
 import com.sachin.example.simplegroovydsl.model.DslConfigEntity;
 import com.sachin.example.simplegroovydsl.model.DslConfigEntityExample;
+import com.sachin.example.simplegroovydsl.model.DslTestParam;
 import groovy.lang.Closure;
 import groovy.lang.GroovyShell;
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +86,34 @@ public class AdapterService  implements InitializingBean {
             return executor;
         } catch (Exception e) {
             log.info("初始化Adapter[{}]失败.", dslConfig.getName());
+            throw new AdapterParsedException(dslConfig.getName(), e);
+        }
+    }
+
+
+    public Object doTest(DslTestParam testParam) {
+        DSLConfig dslConfig = testParam.getDslConfig();
+        MDC.put(Constants.MDC_ADAPTER_ID, dslConfig.getName());
+        MDC.put(Constants.MDC_CUR_ADAPTER_ID, dslConfig.getName());
+        AdapterExecutor executor = getTestAdapter(dslConfig);
+        return executor.doAdapter(testParam.getBody());
+    }
+
+
+    private AdapterExecutor getTestAdapter(DSLConfig dslConfig) {
+        try {
+            Preconditions.checkArgument(StringUtils.isNotBlank(dslConfig.getName()), "名称不能为空");
+            Preconditions.checkArgument(StringUtils.isNotBlank(dslConfig.getContent()), "dsl代码不能为空");
+
+            Closure closure = (Closure) new GroovyShell().parse(getMergedDslContent(dslConfig)).run();
+            AdapterDefinition definition = new AdapterDefinition();
+            closure.rehydrate(definition, definition, definition).run();
+
+            AdapterExecutor executor = new AdapterExecutor(definition, dslConfig.getName());
+            log.info("初始化测试Adapter[{}]成功.", dslConfig.getName());
+            return executor;
+        } catch (Exception e) {
+            log.info("初始化测试Adapter[{}]失败.", dslConfig.getName());
             throw new AdapterParsedException(dslConfig.getName(), e);
         }
     }

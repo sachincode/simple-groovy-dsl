@@ -644,6 +644,76 @@ public class DslConfigHistoryEntityExample {
             addCriterion("version not between", value1, value2, "version");
             return (Criteria) this;
         }
+
+        public Criteria andOpTypeIsNull() {
+            addCriterion("op_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeIsNotNull() {
+            addCriterion("op_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeEqualTo(String value) {
+            addCriterion("op_type =", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeNotEqualTo(String value) {
+            addCriterion("op_type <>", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeGreaterThan(String value) {
+            addCriterion("op_type >", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("op_type >=", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeLessThan(String value) {
+            addCriterion("op_type <", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeLessThanOrEqualTo(String value) {
+            addCriterion("op_type <=", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeLike(String value) {
+            addCriterion("op_type like", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeNotLike(String value) {
+            addCriterion("op_type not like", value, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeIn(List<String> values) {
+            addCriterion("op_type in", values, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeNotIn(List<String> values) {
+            addCriterion("op_type not in", values, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeBetween(String value1, String value2) {
+            addCriterion("op_type between", value1, value2, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpTypeNotBetween(String value1, String value2) {
+            addCriterion("op_type not between", value1, value2, "opType");
+            return (Criteria) this;
+        }
     }
 
     /**

@@ -57,10 +57,10 @@ public interface DslConfigHistoryEntityMapper {
     @Insert({
         "insert into T_dsl_config_history (gmt_create, gmt_modify, ",
         "`name`, config, `operator`, ",
-        "version)",
+        "version, op_type)",
         "values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
         "#{name,jdbcType=VARCHAR}, #{config,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, ",
-        "#{version,jdbcType=INTEGER})"
+        "#{version,jdbcType=INTEGER}, #{opType,jdbcType=VARCHAR})"
     })
     @Options(useGeneratedKeys=true,keyProperty="id")
     int insert(DslConfigHistoryEntity record);
@@ -89,7 +89,8 @@ public interface DslConfigHistoryEntityMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="config", property="config", jdbcType=JdbcType.VARCHAR),
         @Result(column="operator", property="operator", jdbcType=JdbcType.VARCHAR),
-        @Result(column="version", property="version", jdbcType=JdbcType.INTEGER)
+        @Result(column="version", property="version", jdbcType=JdbcType.INTEGER),
+        @Result(column="op_type", property="opType", jdbcType=JdbcType.VARCHAR)
     })
     List<DslConfigHistoryEntity> selectByExample(DslConfigHistoryEntityExample example);
 
@@ -101,7 +102,7 @@ public interface DslConfigHistoryEntityMapper {
      */
     @Select({
         "select",
-        "id, gmt_create, gmt_modify, `name`, config, `operator`, version",
+        "id, gmt_create, gmt_modify, `name`, config, `operator`, version, op_type",
         "from T_dsl_config_history",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -112,7 +113,8 @@ public interface DslConfigHistoryEntityMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="config", property="config", jdbcType=JdbcType.VARCHAR),
         @Result(column="operator", property="operator", jdbcType=JdbcType.VARCHAR),
-        @Result(column="version", property="version", jdbcType=JdbcType.INTEGER)
+        @Result(column="version", property="version", jdbcType=JdbcType.INTEGER),
+        @Result(column="op_type", property="opType", jdbcType=JdbcType.VARCHAR)
     })
     DslConfigHistoryEntity selectByPrimaryKey(Long id);
 
@@ -156,7 +158,8 @@ public interface DslConfigHistoryEntityMapper {
           "`name` = #{name,jdbcType=VARCHAR},",
           "config = #{config,jdbcType=VARCHAR},",
           "`operator` = #{operator,jdbcType=VARCHAR},",
-          "version = #{version,jdbcType=INTEGER}",
+          "version = #{version,jdbcType=INTEGER},",
+          "op_type = #{opType,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(DslConfigHistoryEntity record);

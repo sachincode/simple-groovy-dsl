@@ -10,6 +10,8 @@ public enum DslOperateEnum {
     UPDATE_DSL("update", "更新", null),
     ENABLE_DSL("enable", "启用", DslStatusEnum.ENABLED),
     DISABLE_DSL("disable", "禁用", DslStatusEnum.DISABLED),
+    DELETE_DSL("delete", "删除", DslStatusEnum.DELETED),
+    ROLLBACK_DSL("rollback", "回滚", DslStatusEnum.ENABLED),
     ENABLE_TIMER("enable_timer", "启用定时任务", DslStatusEnum.ENABLED),
     DISABLE_TIMER("disable_timer", "禁用定时任务", DslStatusEnum.DISABLED);
 
