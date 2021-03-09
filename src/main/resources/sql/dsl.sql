@@ -26,6 +26,7 @@ CREATE TABLE `T_dsl_config_history` (
   `operator` varchar(64) NOT NULL DEFAULT '' COMMENT '操作人',
   `version` int(11) NOT NULL DEFAULT '0' COMMENT '版本号',
   `op_type` varchar(12) NOT NULL DEFAULT '' COMMENT '操作类型',
+  `describe` varchar(200) NOT NULL DEFAULT '' COMMENT '操作描述',
   PRIMARY KEY (`id`),
   KEY `uq_name` (`name`),
   KEY `idx_gmt_create` (`gmt_create`)
